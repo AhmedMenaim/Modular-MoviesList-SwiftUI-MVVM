@@ -10,6 +10,9 @@ import Combine
 protocol MoviesRepositoryProtocol: MoviesRepositoryGettable { }
 
 protocol MoviesRepositoryGettable {
-  func getMovies() -> AnyPublisher<MoviesRepositoryModel?, RepositoryError>
-  func getSearchedMovies(with searchedText: String) -> AnyPublisher<MoviesRepositoryModel?, RepositoryError>
+  func getMovies(for currentPage: Int) -> AnyPublisher<MoviesRepositoryModel?, RepositoryError>
+  func getSearchedMovies(
+    with searchedText: String,
+    and searchPage: Int
+  ) -> AnyPublisher<MoviesRepositoryModel?, RepositoryError>
 }

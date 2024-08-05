@@ -8,8 +8,8 @@
 import Foundation
 
 enum MoviesAPIRequest: APIRequestConfiguration {
-  case getMovies
-  case getSearchedMovies(searchText: String)
+  case getMovies(currentPage: Int)
+  case getSearchedMovies(searchText: String, searchPage: Int)
 
   var method: HTTPMethod {
     switch self {
@@ -24,10 +24,10 @@ enum MoviesAPIRequest: APIRequestConfiguration {
     switch self {
         /// We can save the APIKey in keychain
         /// Also create a common BaseURL and paths for each one.
-      case .getMovies:
-        return "\(Constants.Network.baseURL)trending/movie/week?\(Constants.Network.APIKey)"
-      case.getSearchedMovies(let searchText):
-        return "\(Constants.Network.baseURL)search/movie?query=\(searchText)&\(Constants.Network.APIKey)"
+      case .getMovies(let currentPage):
+        return "\(Constants.Network.baseURL)discover/movie?include_adult=false&sort_by=popularity.desc&page=\(currentPage)&\(Constants.Network.APIKey)"
+      case.getSearchedMovies(let searchText, let searchPage):
+        return "\(Constants.Network.baseURL)search/movie?query=\(searchText)&page=\(searchPage)&\(Constants.Network.APIKey)"
     }
   }
 

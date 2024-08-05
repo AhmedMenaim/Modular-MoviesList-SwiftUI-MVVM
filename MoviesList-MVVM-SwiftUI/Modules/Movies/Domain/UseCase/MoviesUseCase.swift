@@ -87,10 +87,10 @@ final class MoviesUseCase {
 
 // MARK: - MoviesUseCaseProtocol
 extension MoviesUseCase: MoviesUseCaseProtocol {
-  func fetchMovies() -> AnyPublisher<MoviesItems, ModuleError> {
+  func fetchMovies(for currentPage: Int) -> AnyPublisher<MoviesItems, ModuleError> {
     return Future { [weak self] promise in
       guard let self else { return }
-      moviesRepository.getMovies()
+      moviesRepository.getMovies(for: currentPage)
         .sink(receiveCompletion: { result in
           if case .failure(let error) = result {
             promise(.failure(
@@ -108,10 +108,10 @@ extension MoviesUseCase: MoviesUseCaseProtocol {
     .eraseToAnyPublisher()
   }
 
-  func search(with searchText: String) -> AnyPublisher<MoviesItems, ModuleError> {
+  func search(with searchText: String, and searchPage: Int) -> AnyPublisher<MoviesItems, ModuleError> {
       return Future { [weak self] promise in
         guard let self else { return }
-        moviesRepository.getSearchedMovies(with: searchText)
+        moviesRepository.getSearchedMovies(with: searchText, and: searchPage)
           .sink(receiveCompletion: { result in
             if case .failure(let error) = result {
               promise(.failure(

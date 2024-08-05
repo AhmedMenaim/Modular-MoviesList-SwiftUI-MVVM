@@ -50,10 +50,10 @@ class MoviesRepository {
 }
 
 extension  MoviesRepository: MoviesRepositoryProtocol {
-  func getMovies() -> AnyPublisher<MoviesRepositoryModel?, RepositoryError> {
+  func getMovies(for currentPage: Int) -> AnyPublisher<MoviesRepositoryModel?, RepositoryError> {
     return Future { [weak self] promise in
       guard let self else { return }
-      client.getMovies()
+      client.getMovies(for: currentPage)
         .sink(receiveCompletion: { result in
           if case .failure(let error) = result {
             promise(.failure(
@@ -71,10 +71,13 @@ extension  MoviesRepository: MoviesRepositoryProtocol {
     .eraseToAnyPublisher()
   }
 
-  func getSearchedMovies(with searchedText: String) -> AnyPublisher<MoviesRepositoryModel?, RepositoryError> {
+  func getSearchedMovies(
+    with searchedText: String,
+    and searchPage: Int
+  ) -> AnyPublisher<MoviesRepositoryModel?, RepositoryError> {
     return Future { [weak self] promise in
       guard let self else { return }
-      client.getSearchedMovies(with: searchedText)
+      client.getSearchedMovies(with: searchedText, and: searchPage)
         .sink(receiveCompletion: { result in
           if case .failure(let error) = result {
             promise(.failure(

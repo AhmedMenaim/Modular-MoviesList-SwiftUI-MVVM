@@ -26,8 +26,7 @@ struct SearchBar: View {
 
             if !viewModel.searchText.isEmpty {
               Button(action: {
-                viewModel.searchText = ""
-                viewModel.showMovies()
+                viewModel.resetSearch()
               }) {
                 Image(systemName: "multiply.circle.fill")
                   .foregroundColor(.gray)

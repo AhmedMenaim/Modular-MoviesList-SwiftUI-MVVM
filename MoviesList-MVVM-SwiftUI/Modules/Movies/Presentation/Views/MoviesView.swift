@@ -24,7 +24,7 @@ struct MoviesView: View {
         ScrollView {
           LazyVGrid(
             columns: viewModel.columnsGrids, spacing: 12) {
-              ForEach(viewModel.movies, id: \.id) { movie in
+              ForEach(viewModel.filteredMovies, id: \.id) { movie in
                 VStack(alignment: .leading) {
                   KFImage(URL(string: movie.posterPath))
                     .placeholder {
@@ -55,6 +55,9 @@ struct MoviesView: View {
                 .onTapGesture {
                   viewModel.selectMovie(movie)
                 }
+                .onAppear {
+                  viewModel.validatePagination(with: movie)
+                }
               }
             }
         }
@@ -69,7 +72,7 @@ struct MoviesView: View {
       viewModel.showGenres()
     }
     .onChange(of: viewModel.searchText, { _, _ in
-      viewModel.showSearchedMovies()
+        viewModel.showSearchedMovies()
     })
   }
 }

@@ -9,8 +9,11 @@ import Foundation
 import Combine
 
 protocol MoviesAPIClientProtocol {
-  func getMovies() -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError>
-  func getSearchedMovies(with searchedText: String) -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError>
+  func getMovies(for currentPage: Int) -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError>
+  func getSearchedMovies(
+    with searchedText: String,
+    and searchPage: Int
+  ) -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError>
 }
 
 class MoviesAPIClient {
@@ -22,13 +25,19 @@ class MoviesAPIClient {
 
 // MARK: - MoviesAPIClientProtocol
 extension MoviesAPIClient: MoviesAPIClientProtocol {
-  func getMovies() -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError> {
-    let request = MoviesAPIRequest.getMovies
+  func getMovies(for currentPage: Int) -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError> {
+    let request = MoviesAPIRequest.getMovies(currentPage: currentPage)
     return client.perform(request.asURLRequest())
   }
 
-  func getSearchedMovies(with searchedText: String) -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError> {
-    let request = MoviesAPIRequest.getSearchedMovies(searchText: searchedText)
+  func getSearchedMovies(
+    with searchedText: String,
+    and searchPage: Int
+  ) -> AnyPublisher<MoviesNetworkResponse, SessionDataTaskError> {
+    let request = MoviesAPIRequest.getSearchedMovies(
+      searchText: searchedText,
+      searchPage: searchPage
+    )
     return client.perform(request.asURLRequest())
   }
 }

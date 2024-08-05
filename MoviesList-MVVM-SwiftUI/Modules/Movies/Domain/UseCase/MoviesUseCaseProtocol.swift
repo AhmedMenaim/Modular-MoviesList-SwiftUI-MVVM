@@ -9,9 +9,9 @@ import Foundation
 import Combine
 
 protocol MoviesUseCaseProtocol {
-  func fetchMovies() -> AnyPublisher<MoviesItems, ModuleError>
+  func fetchMovies(for currentPage: Int) -> AnyPublisher<MoviesItems, ModuleError>
   func fetchGenres() -> AnyPublisher<[MovieGenre], ModuleError>
-  func search(with searchText: String) -> AnyPublisher<MoviesItems, ModuleError>
+  func search(with searchText: String,and searchPage: Int) -> AnyPublisher<MoviesItems, ModuleError>
 }
 
 struct MoviesItems {
