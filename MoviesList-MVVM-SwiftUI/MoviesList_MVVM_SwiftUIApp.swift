@@ -11,7 +11,9 @@ import SwiftUI
 struct MoviesList_MVVM_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+          let navigationController = UINavigationController()
+          let coordinator = MoviesCoordinator(navigationController: navigationController)
+          MoviesCoordinatorView(coordinator: coordinator)
         }
     }
 }
