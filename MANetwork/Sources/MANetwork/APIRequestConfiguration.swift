@@ -7,6 +7,7 @@
 
 import Foundation
 
+public
 protocol APIRequestConfiguration {
   var method: HTTPMethod { get }
   var path: String { get }
@@ -26,6 +27,7 @@ extension APIRequestConfiguration {
     return headers
   }
 
+  public
   func asURLRequest() -> URLRequest {
     /// URL Components
     var components = components
@@ -57,6 +59,7 @@ extension APIRequestConfiguration {
     return urlRequest
   }
 
+  public
   func asMultipartURLRequest() -> URLRequest {
     var components = components
     components.path = "/" + path
@@ -121,5 +124,5 @@ extension APIRequestConfiguration {
   }
 }
 
-typealias HTTPHeaders = [String:String]
-typealias Parameters = [String: Any]
+public typealias HTTPHeaders = [String:String]
+public typealias Parameters = [String: Any]

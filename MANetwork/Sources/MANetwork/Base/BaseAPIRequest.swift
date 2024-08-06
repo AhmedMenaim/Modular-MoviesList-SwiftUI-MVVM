@@ -7,9 +7,11 @@
 
 import Foundation
 
+public
 enum BaseAPIRequest: APIRequestConfiguration {
   // MARK: - HTTPMethod
-  internal var method: HTTPMethod {
+  public
+  var method: HTTPMethod {
     switch self {
       default:
         return .GET
@@ -17,24 +19,29 @@ enum BaseAPIRequest: APIRequestConfiguration {
   }
 
   // MARK: - Path
-  internal var path: String {
+  public 
+  var path: String {
     return ""
   }
 
   // MARK: - Parameters
-  internal var parameters: Parameters? {
+  public 
+  var parameters: Parameters? {
     return [:]
   }
 
   // MARK: - Headers
-  internal var headers: HTTPHeaders? {
+  public
+  var headers: HTTPHeaders? {
     return nil
   }
 
+  public 
   var queryParams: [String : Any]? {
     return nil
   }
 
+  public 
   var files: [UploadMediaFile]? {
     return nil
   }

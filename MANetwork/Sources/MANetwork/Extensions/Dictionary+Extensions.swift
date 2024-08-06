@@ -8,6 +8,7 @@
 import Foundation
 
 /// To be able to add two dictionaries to each other
+
 extension Dictionary {
   static func + (lhs: Dictionary, rhs: Dictionary?) -> Dictionary {
     if rhs == nil {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+public
 struct UploadMediaFile {
   let key: String
   let filename: String
