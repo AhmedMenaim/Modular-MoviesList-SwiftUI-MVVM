@@ -7,6 +7,7 @@
 
 import Foundation
 
+public
 enum SessionDataTaskError: Error {
   case failWithError(Error)
   case notValidURL

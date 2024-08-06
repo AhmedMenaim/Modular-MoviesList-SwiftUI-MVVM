@@ -7,6 +7,7 @@
 
 import Foundation
 
+public
 enum RepositoryError: Error {
   case noInternetConnection
   case notFound
@@ -15,6 +16,7 @@ enum RepositoryError: Error {
   case noData
   case unowned
 
+  public
   init(error: SessionDataTaskError) {
     switch error {
       case .noInternetConnection:

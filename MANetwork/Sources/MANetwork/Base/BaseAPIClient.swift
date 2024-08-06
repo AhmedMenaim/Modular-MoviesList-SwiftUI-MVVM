@@ -8,12 +8,17 @@
 import Foundation
 import Combine
 
+public 
 protocol BaseAPIClientProtocol {
-    func perform<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, SessionDataTaskError>
+  func perform<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, SessionDataTaskError>
 }
 
+public
 struct BaseAPIClient: BaseAPIClientProtocol {
+  public init() {}
+
   private let session = URLSession.shared
+  public
   func perform<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, SessionDataTaskError> {
     if let url = request.url {
       print("[\(request.httpMethod?.uppercased() ?? "")] '\(url)'")

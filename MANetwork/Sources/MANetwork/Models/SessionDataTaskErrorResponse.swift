@@ -7,10 +7,12 @@
 
 import Foundation
 
+public 
 struct SessionDataTaskErrorResponse: Codable {
   let error: SessionDataTaskErrorModel?
 }
 
+public
 struct SessionDataTaskErrorModel: Codable {
   let code: Int?
   let status: Int?
