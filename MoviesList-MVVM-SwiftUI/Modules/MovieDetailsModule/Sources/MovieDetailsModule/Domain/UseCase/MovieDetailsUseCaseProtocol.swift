@@ -5,8 +5,9 @@
 //  Created by Menaim on 05/08/2024.
 //
 
-import Combine
 import Foundation
+import Combine
+import Commons
 
 protocol MovieDetailsUseCaseProtocol {
   func fetchMovieDetails(for id: String) -> AnyPublisher<MovieDetailsItem, ModuleError>
