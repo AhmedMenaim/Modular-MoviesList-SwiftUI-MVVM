@@ -7,12 +7,9 @@
 
 import UIKit
 import SwiftUI
-
-protocol MoviesCoordinatorProtocol {
-  func start()
-  func getSelectedMovieID() -> String?
-  func showMovieDetail(with movieID: String)
-}
+import Commons
+import MoviesModule
+import MovieDetailsModule
 
 class MoviesCoordinator {
   var navigationController: UINavigationController
