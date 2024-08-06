@@ -1,12 +1,13 @@
 //
 //  String+Extensions.swift
-//  MoviesList-MVVM-SwiftUI
+//  
 //
-//  Created by Menaim on 04/08/2024.
+//  Created by Menaim on 06/08/2024.
 //
 
 import Foundation
 
+public
 extension String {
   func toDate(format: DateFormat = .yearMonthDay) -> Date? {
     let dateFormatter = DateFormatter()
