@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import Commons
 
 protocol MoviesUseCaseProtocol {
   func fetchMovies(for currentPage: Int) -> AnyPublisher<MoviesItems, ModuleError>
@@ -41,6 +42,7 @@ struct MovieItem {
   let overview: String
 }
 
+public
 struct MovieGenre {
   let id: Int
   let name: String

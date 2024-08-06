@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import Commons
 
 final class MoviesViewModel: ObservableObject {
   // MARK: - Vars

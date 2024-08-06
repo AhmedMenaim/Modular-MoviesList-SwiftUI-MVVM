@@ -11,7 +11,7 @@ struct GenresFilter: View {
   @ObservedObject var viewModel: MoviesViewModel
   
   var body: some View {
-    ScrollView(.horizontal) {
+    ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: 12) {
         ForEach(viewModel.genres, id: \.id) { genre in
           Button(action: {
@@ -37,6 +37,5 @@ struct GenresFilter: View {
       }
       .padding(.horizontal)
     }
-    .scrollIndicators(.hidden)
   }
 }
