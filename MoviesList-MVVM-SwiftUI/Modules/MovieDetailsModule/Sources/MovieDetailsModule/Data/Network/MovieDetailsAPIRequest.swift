@@ -5,7 +5,7 @@
 //  Created by Menaim on 05/08/2024.
 //
 
-import Foundation
+import MANetwork
 
 enum MovieDetailsAPIRequest: APIRequestConfiguration {
   case getMovieDetails(id: String)

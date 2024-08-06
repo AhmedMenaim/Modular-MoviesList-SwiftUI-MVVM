@@ -5,9 +5,12 @@
 //  Created by Menaim on 05/08/2024.
 //
 
-import Foundation
+import MANetwork
+import Commons
 
+public
 class MovieDetailsModuleFactory {
+  public
   static func makeModule(with coordinator: MoviesCoordinatorProtocol) -> MovieDetailView {
     let baseAPIClient = BaseAPIClient()
     let movieDetailsClient = MovieDetailsAPIClient(client: baseAPIClient)

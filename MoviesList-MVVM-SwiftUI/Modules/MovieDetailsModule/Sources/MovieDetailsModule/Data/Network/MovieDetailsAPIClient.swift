@@ -5,8 +5,8 @@
 //  Created by Menaim on 05/08/2024.
 //
 
-import Foundation
 import Combine
+import MANetwork
 
 protocol MovieDetailsAPIClientProtocol {
   func getMovieDetails(with movieID: String) -> AnyPublisher<MovieDetailsNetworkResponse, SessionDataTaskError>
@@ -25,5 +25,4 @@ extension MovieDetailsAPIClient: MovieDetailsAPIClientProtocol {
     let request = MovieDetailsAPIRequest.getMovieDetails(id: movieID)
     return client.perform(request.asURLRequest())
   }
-
 }

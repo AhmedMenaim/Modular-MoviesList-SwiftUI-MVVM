@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Commons
 
 final class MovieDetailsUseCase {
   // MARK: - Vars
