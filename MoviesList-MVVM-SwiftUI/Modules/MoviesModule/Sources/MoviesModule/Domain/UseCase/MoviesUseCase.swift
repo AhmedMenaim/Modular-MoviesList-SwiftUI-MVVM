@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import MoviesLookups
 import Combine
+import Commons
 
 final class MoviesUseCase {
   // MARK: - Private Vars
@@ -53,7 +55,8 @@ final class MoviesUseCase {
     )
   }
 
-  private func convert(_ genres: [GenreRepositoryModel]?) -> [MovieGenre] {
+  public
+  func convert(_ genres: [GenreRepositoryModel]?) -> [MovieGenre] {
     genres?.compactMap({ genre in
       MovieGenre(
         id: genre.id ?? 00,

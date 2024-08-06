@@ -1,13 +1,17 @@
 //
 //  MoviesModuleFactory.swift
-//  MoviesList-MVVM-SwiftUI
+//  
 //
-//  Created by Menaim on 04/08/2024.
+//  Created by Menaim on 06/08/2024.
 //
 
-import Foundation
+import MANetwork
+import MoviesLookups
+import Commons
 
+public
 class MoviesModuleFactory {
+  public
   static func makeModule(with coordinator: MoviesCoordinatorProtocol) -> MoviesView {
     let baseAPIClient = BaseAPIClient()
     let moviesClient = MoviesAPIClient(client: baseAPIClient)
@@ -26,3 +30,4 @@ class MoviesModuleFactory {
     return view
   }
 }
+

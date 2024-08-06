@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 
+public
 struct MoviesView: View {
   @StateObject private var viewModel: MoviesViewModel
 
@@ -16,12 +17,13 @@ struct MoviesView: View {
   }
 
   // MARK: - Views
+  public
   var body: some View {
     NavigationView {
       VStack {
         SearchBar(viewModel: viewModel)
         GenresFilter(viewModel: viewModel)
-        ScrollView {
+        ScrollView(showsIndicators: false) {
           LazyVGrid(
             columns: viewModel.columnsGrids, spacing: 12) {
               ForEach(viewModel.filteredMovies, id: \.id) { movie in
@@ -62,7 +64,6 @@ struct MoviesView: View {
             }
         }
         .padding(12)
-        .scrollIndicators(.hidden)
       }
       .navigationTitle("Watch New Movies")
       .redacted(reason: viewModel.isLoading ? .placeholder : [])
@@ -71,8 +72,8 @@ struct MoviesView: View {
       viewModel.showMovies()
       viewModel.showGenres()
     }
-    .onChange(of: viewModel.searchText, { _, _ in
-        viewModel.showSearchedMovies()
-    })
+    .onChange(of: viewModel.searchText) { _ in
+      viewModel.showSearchedMovies()
+    }
   }
 }

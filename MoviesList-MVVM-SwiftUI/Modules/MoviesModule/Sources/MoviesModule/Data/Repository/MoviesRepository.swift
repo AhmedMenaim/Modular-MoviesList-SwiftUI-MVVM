@@ -5,9 +5,12 @@
 //  Created by Menaim on 05/08/2024.
 //
 
+import Foundation
 import Combine
+import MANetwork
+import Commons
 
-final 
+final
 class MoviesRepository {
   // MARK: - Vars
   private var cancellable: Set<AnyCancellable> = []
@@ -49,7 +52,7 @@ class MoviesRepository {
   }
 }
 
-extension  MoviesRepository: MoviesRepositoryProtocol {
+extension MoviesRepository: MoviesRepositoryProtocol {
   func getMovies(for currentPage: Int) -> AnyPublisher<MoviesRepositoryModel?, RepositoryError> {
     return Future { [weak self] promise in
       guard let self else { return }

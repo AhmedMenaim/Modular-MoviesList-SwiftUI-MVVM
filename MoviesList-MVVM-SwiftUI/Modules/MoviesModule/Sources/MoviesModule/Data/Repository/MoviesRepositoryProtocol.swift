@@ -6,6 +6,7 @@
 //
 
 import Combine
+import MANetwork
 
 protocol MoviesRepositoryProtocol: MoviesRepositoryGettable { }
 

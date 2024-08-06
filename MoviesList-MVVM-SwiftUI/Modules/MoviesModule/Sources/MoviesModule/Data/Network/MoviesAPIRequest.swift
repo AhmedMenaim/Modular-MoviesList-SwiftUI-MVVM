@@ -5,7 +5,8 @@
 //  Created by Menaim on 04/08/2024.
 //
 
-import Foundation
+import MANetwork
+import Commons
 
 enum MoviesAPIRequest: APIRequestConfiguration {
   case getMovies(currentPage: Int)
