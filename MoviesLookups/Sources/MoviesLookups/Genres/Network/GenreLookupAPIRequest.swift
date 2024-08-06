@@ -5,7 +5,8 @@
 //  Created by Menaim on 05/08/2024.
 //
 
-import Foundation
+import Combine
+import MANetwork
 
 enum GenreAPIRequest: APIRequestConfiguration {
   case getGenre

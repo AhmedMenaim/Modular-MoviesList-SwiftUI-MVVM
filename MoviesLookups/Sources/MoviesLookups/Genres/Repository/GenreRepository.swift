@@ -6,12 +6,15 @@
 //
 
 import Combine
+import MANetwork
 
+public
 final class GenreRepository {
   // MARK: - Vars
   private var cancellable: Set<AnyCancellable> = []
   private var client: GenreAPIClientProtocol
 
+  public
   init(client: GenreAPIClientProtocol) {
     self.client = client
   }
@@ -30,6 +33,7 @@ final class GenreRepository {
 
 // MARK: - GenreRepositoryProtocol
 extension  GenreRepository: GenreRepositoryProtocol {
+  public 
   func getGenre() -> AnyPublisher<[GenreRepositoryModel]?, RepositoryError> {
     return Future { [weak self] promise in
       guard let self else { return }
