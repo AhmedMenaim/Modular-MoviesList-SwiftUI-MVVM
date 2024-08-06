@@ -1,12 +1,13 @@
 //
 //  Date+Extensions.swift
-//  MoviesList-MVVM-SwiftUI
 //
-//  Created by Menaim on 04/08/2024.
+//
+//  Created by Menaim on 06/08/2024.
 //
 
 import Foundation
 
+public
 extension Date {
   func toString(format: DateFormat = .yearMonthDay) -> String {
     let dateFormatter = DateFormatter()
@@ -25,11 +26,4 @@ extension Date {
       return "0000"
     }
   }
-}
-
-enum DateFormat: String {
-  case yearMonthDay = "yyyy-MM-dd"
-  case monthDayYear = "MM-dd-yyyy"
-  case dayMonthYear = "dd-MM-yyyy"
-  // Add more formats as needed
 }

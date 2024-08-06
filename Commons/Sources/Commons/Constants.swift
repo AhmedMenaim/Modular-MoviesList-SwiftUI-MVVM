@@ -1,13 +1,15 @@
 //
-//  Constants.swift
-//  MoviesList-MVVM-SwiftUI
+//  File.swift
+//  
 //
-//  Created by Menaim on 05/08/2024.
+//  Created by Menaim on 06/08/2024.
 //
 
 import Foundation
 
+public
 enum Constants {
+  public
   enum Network {
     static let baseURL = "https://api.themoviedb.org/3/"
     static let moviesPath = ""

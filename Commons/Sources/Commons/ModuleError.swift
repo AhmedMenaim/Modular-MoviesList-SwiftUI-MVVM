@@ -1,12 +1,14 @@
 //
 //  ModuleError.swift
-//  MoviesList-MVVM-SwiftUI
 //
-//  Created by Menaim on 05/08/2024.
+//
+//  Created by Menaim on 06/08/2024.
 //
 
-import Foundation
+import Combine
+import MANetwork
 
+public
 enum ModuleError: Error {
   case noInternetConnection
   case notFound
@@ -15,6 +17,7 @@ enum ModuleError: Error {
   case noData
   case unowned
 
+  public
   init(error: RepositoryError) {
     switch error {
       case .noInternetConnection:
