@@ -34,7 +34,11 @@ let package = Package(
               "Commons"
             ]),
         .testTarget(
-            name: "MovieDetailsModuleTests",
-            dependencies: ["MovieDetailsModule"]),
+          name: "MovieDetailsModuleTests",
+          dependencies: ["MovieDetailsModule"],
+          resources: [
+            .copy("Resources/MockMovieDetailsNetworkResponse.json")
+          ]
+        )
     ]
 )
