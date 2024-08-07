@@ -87,12 +87,21 @@ struct MovieDetailView: View {
       }
       .padding()
     }
-    .background(Color.black)
-    .foregroundColor(.white)
+    .background(Color(UIColor.systemBackground))
+    .foregroundColor(.primary)
     .navigationBarTitle(viewModel.movieDetails.originalTitle, displayMode: .inline)
     .redacted(reason: viewModel.isLoading ? .placeholder : [])
     .onAppear {
       viewModel.showMovieDetails()
+    }
+    .alert(isPresented: $viewModel.isOffline) {
+      return Alert(
+        title: Text("You are in offline mode"),
+        message: Text(""),
+        dismissButton: .default(Text("Go Back")) {
+          viewModel.goBack()
+        }
+      )
     }
   }
 }

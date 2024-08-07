@@ -18,7 +18,8 @@ final class MoviesViewModel: ObservableObject {
   @Published var isLoading = false
   @Published var searchText = ""
   @Published var isSearchActive = false
-  @Published var selectedGenre: MovieGenre? = nil  
+  @Published var isOffline = false
+  @Published var selectedGenre: MovieGenre? = nil
   {
     didSet {
       filterMovies()
@@ -26,7 +27,6 @@ final class MoviesViewModel: ObservableObject {
   }
   private var currentPage = 0
   private var searchPage = 1
-  private let debounceInterval = 0.3
   private var cancellable: Set<AnyCancellable> = []
   let columnsGrids = Array(repeating: GridItem(.flexible()), count: 2)
 
@@ -49,9 +49,12 @@ extension MoviesViewModel {
     isLoading = true
     currentPage += 1
     useCase.fetchMovies(for: currentPage)
-      .sink { [weak self] _ in
+      .sink { [weak self] completion in
         guard let self else {
           return
+        }
+        if case .failure = completion {
+          isOffline = true
         }
         isLoading = false
       } receiveValue: { [weak self] response in
