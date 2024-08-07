@@ -75,5 +75,11 @@ struct MoviesView: View {
     .onChange(of: viewModel.searchText) { _ in
       viewModel.showSearchedMovies()
     }
+    .alert(isPresented: $viewModel.isOffline) {
+      return Alert(
+        title: Text("You are in offline mode"),
+        dismissButton: .default(Text("OK"))
+      )
+    }
   }
 }

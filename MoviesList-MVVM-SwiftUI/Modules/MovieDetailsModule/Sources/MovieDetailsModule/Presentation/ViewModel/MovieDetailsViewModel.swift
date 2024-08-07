@@ -13,6 +13,7 @@ final class MovieDetailsViewModel: ObservableObject {
   // MARK: - Vars
   @Published var movieDetails: MovieDetailsItem = MovieDetailsItem()
   @Published var isLoading = true
+  @Published var isOffline = false
   private var cancellable: Set<AnyCancellable> = []
 
   // MARK: - Dependencies
@@ -33,20 +34,27 @@ final class MovieDetailsViewModel: ObservableObject {
 extension MovieDetailsViewModel {
   func showMovieDetails() {
     isLoading = true
-    guard 
+    guard
       let selectedMovieID = coordinator.getSelectedMovieID()
     else { return }
     useCase.fetchMovieDetails(for: selectedMovieID)
-        .sink { [weak self] _ in
-          guard let self else {
-            return
-          }
-          isLoading = false
-        } receiveValue: { [weak self] details in
-          guard let self else { return }
-          movieDetails = details
-          isLoading = false
+      .sink { [weak self] completion in
+        guard let self else {
+          return
         }
-        .store(in: &cancellable)
-    }
+        if case .failure = completion {
+          isOffline = true
+        }
+        isLoading = false
+      } receiveValue: { [weak self] details in
+        guard let self else { return }
+        movieDetails = details
+        isLoading = false
+      }
+      .store(in: &cancellable)
+  }
+
+  func goBack() {
+    coordinator.goBack()
+  }
 }

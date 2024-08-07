@@ -89,7 +89,7 @@ extension MoviesRepository: MoviesRepositoryProtocol {
     return Future { [weak self] promise in
       guard let self = self else { return }
 
-      self.client.getMovies(for: currentPage)
+      client.getMovies(for: currentPage)
         .sink(receiveCompletion: { result in
           if case .failure(let error) = result {
             if RepositoryError(error: error) == RepositoryError.noInternetConnection {

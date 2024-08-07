@@ -12,4 +12,5 @@ protocol MoviesCoordinatorProtocol {
   func start()
   func getSelectedMovieID() -> String?
   func showMovieDetail(with movieID: String)
+  func goBack()
 }

@@ -38,4 +38,8 @@ extension MoviesCoordinator: MoviesCoordinatorProtocol {
   func getSelectedMovieID() -> String? {
     selectedMovieID
   }
+
+  func goBack() {
+    navigationController.popViewController(animated: true)
+  }
 }
