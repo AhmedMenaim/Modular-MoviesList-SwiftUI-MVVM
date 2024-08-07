@@ -8,6 +8,7 @@
 import MANetwork
 import MoviesLookups
 import Commons
+import MoviesCaching
 
 public
 class MoviesModuleFactory {
@@ -16,7 +17,11 @@ class MoviesModuleFactory {
     let baseAPIClient = BaseAPIClient()
     let moviesClient = MoviesAPIClient(client: baseAPIClient)
     let genresClient = GenreAPIClient(client: baseAPIClient)
-    let moviesRepository = MoviesRepository(client: moviesClient)
+    let cacheManager = MovieCacheManager()
+    let moviesRepository = MoviesRepository(
+      client: moviesClient,
+      cacheManager: cacheManager
+    )
     let genresRepository = GenreRepository(client: genresClient)
     let useCase = MoviesUseCase(
       moviesRepository: moviesRepository,

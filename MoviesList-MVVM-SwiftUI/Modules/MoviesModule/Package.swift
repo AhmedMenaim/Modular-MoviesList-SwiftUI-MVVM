@@ -20,7 +20,8 @@ let package = Package(
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.12.0"),
         .package(path: "../../MANetwork"),
         .package(path: "../../MoviesLookups"),
-        .package(path: "../../Commons")
+        .package(path: "../../Commons"),
+        .package(path: "../../MoviesCaching")
         ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -31,7 +32,8 @@ let package = Package(
               "Kingfisher",
               "MANetwork",
               "MoviesLookups",
-              "Commons"
+              "Commons",
+              "MoviesCaching"
             ]),
 
         .testTarget(
