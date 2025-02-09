@@ -11,20 +11,15 @@ import Commons
 
 final class MoviesViewModel: ObservableObject {
   // MARK: - Vars
-  @Published var movies: [MovieItem] = []
-  @Published var filteredMovies: [MovieItem] = []
-  @Published var searchedMovies: [MovieItem] = []
-  @Published var genres: [MovieGenre] = []
-  @Published var isLoading = false
-  @Published var searchText = ""
-  @Published var isSearchActive = false
-  @Published var isOffline = false
-  @Published var selectedGenre: MovieGenre? = nil
-  {
-    didSet {
-      filterMovies()
-    }
+  @Published var state = MovieViewState() {
+      didSet {
+          filterMovies()
+      }
   }
+  var isEmptySearchText: Bool {
+      state.searchText.isEmpty
+  }
+
   private var currentPage = 0
   private var searchPage = 1
   private var cancellable: Set<AnyCancellable> = []
@@ -46,7 +41,7 @@ final class MoviesViewModel: ObservableObject {
 // MARK: - Fetching Data
 extension MoviesViewModel {
   func showMovies() {
-    isLoading = true
+    state.isLoading = true
     currentPage += 1
     useCase.fetchMovies(for: currentPage)
       .sink { [weak self] completion in
@@ -54,60 +49,65 @@ extension MoviesViewModel {
           return
         }
         if case .failure = completion {
-          isOffline = true
+          state.isOffline = true
         }
-        isLoading = false
+        state.isLoading = false
       } receiveValue: { [weak self] response in
         guard let self else { return }
-        movies += response.movies
+        state.movies += response.movies
         filterMovies()
-        isLoading = false
+        state.isLoading = false
       }
       .store(in: &cancellable)
   }
 
   func showSearchedMovies(isPaginated: Bool = false) {
-    isLoading = true
+    state.isLoading = true
     if isPaginated {
       searchPage += 1
     }
-    if !searchText.isEmpty {
-      isSearchActive = true
-      useCase.search(with: searchText, and: searchPage)
+    if !isEmptySearchText {
+      state.isSearchActive = true
+      useCase.search(
+        with: state.searchText,
+        and: searchPage
+      )
         .sink { [weak self] _ in
           guard let self else {
             return
           }
-          isLoading = false
+          state.isLoading = false
         } receiveValue: { [weak self] response in
           guard let self else { return }
           if !response.movies.isEmpty {
             if isPaginated {
-              searchedMovies += response.movies
+              state.searchedMovies += response.movies
             } else {
-              searchedMovies = response.movies
+              state.searchedMovies = response.movies
             }
-            movies = searchedMovies
+            state.movies = state.searchedMovies
             filterMovies()
           }
-          isLoading = false
+          state.isLoading = false
         }
         .store(in: &cancellable)
+    } else {
+      showMovies()
     }
   }
 
   func showGenres() {
-    isLoading = true
+    state.isLoading = true
     useCase.fetchGenres()
       .sink { [weak self] _ in
         guard let self else {
           return
         }
-        isLoading = false
+        state.isLoading = false
       } receiveValue: { [weak self] response in
         guard let self else { return }
-        genres = response
-        isLoading = false
+        state.genres = response
+        state.isLoading = false
       }
       .store(in: &cancellable)
   }
@@ -117,36 +117,46 @@ extension MoviesViewModel {
   }
 
   func validatePagination(with movie: MovieItem) {
-      if let lastMovie = filteredMovies.last, movie.id == lastMovie.id {
-        isSearchActive ? showSearchedMovies(isPaginated: true) : showMovies()
+    if
+      let lastMovie = state.filteredMovies.last,
+      movie.id == lastMovie.id
+    {
+      state.isSearchActive ? showSearchedMovies(isPaginated: true) : showMovies()
       }
   }
 
   func resetSearch() {
-    isSearchActive = false
-    searchText = ""
-    movies = []
+    state.isSearchActive = false
+    state.searchText = ""
+    state.movies = []
     currentPage = 0
     showMovies()
   }
 
   func filterMovies() {
-    if let selectedGenreID = selectedGenre?.id {
-          filteredMovies = movies.filter { $0.genres.contains(selectedGenreID) }
-      } else {
-          filteredMovies = movies
+    DispatchQueue.main.async { [weak self] in
+      guard let self = self else { return }
+      var filtered = state.movies
+      if let selectedGenreID = state.selectedGenre?.id {
+        filtered = filtered.filter { $0.genres.contains(selectedGenreID) }
       }
-      if !searchText.isEmpty {
-          filteredMovies = movies.filter { $0.title.contains(searchText) }
+      if !isEmptySearchText {
+        filtered = filtered.filter { $0.title.localizedCaseInsensitiveContains(
+          self.state.searchText
+        )}
       }
+      state.filteredMovies = filtered
+    }
   }
 }
 
 // MARK: - Presentation Logic
 extension MoviesViewModel {
   func genreBackgroundColor(for genre: MovieGenre) -> Color {
-    if let selectedGender = self.selectedGenre,
-       selectedGender.id == genre.id {
+    if
+      let selectedGender = state.selectedGenre,
+       selectedGender.id == genre.id
+    {
       return Color.yellow
     } else {
       return Color.clear
@@ -154,7 +164,7 @@ extension MoviesViewModel {
   }
   
   func genreForegroundColor(for genre: MovieGenre) -> Color {
-    if let selectedGender = self.selectedGenre,
+    if let selectedGender = state.selectedGenre,
        selectedGender.id == genre.id {
       return Color.black
     } else {

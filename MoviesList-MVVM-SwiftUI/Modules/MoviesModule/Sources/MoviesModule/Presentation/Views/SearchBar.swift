@@ -12,7 +12,10 @@ struct SearchBar: View {
 
   var body: some View {
     HStack {
-      TextField("Search TMDB", text: $viewModel.searchText)
+      TextField(
+        "Search TMDB",
+        text: $viewModel.state.searchText
+      )
         .padding(7)
         .padding(.horizontal, 25)
         .background(Color(.systemGray6))
@@ -24,7 +27,7 @@ struct SearchBar: View {
               .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
               .padding(.leading, 8)
 
-            if !viewModel.searchText.isEmpty {
+            if !viewModel.isEmptySearchText {
               Button(action: {
                 viewModel.resetSearch()
               }) {

@@ -13,9 +13,12 @@ struct GenresFilter: View {
   var body: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       HStack(spacing: 12) {
-        ForEach(viewModel.genres, id: \.id) { genre in
+        ForEach(
+          viewModel.state.genres,
+          id: \.id
+        ) { genre in
           Button(action: {
-            viewModel.selectedGenre = genre
+            viewModel.state.selectedGenre = genre
           }) {
             Text(genre.name)
               .padding()
