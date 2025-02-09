@@ -26,7 +26,7 @@ struct MoviesView: View {
         ScrollView(showsIndicators: false) {
           LazyVGrid(
             columns: viewModel.columnsGrids, spacing: 12) {
-              ForEach(viewModel.filteredMovies, id: \.id) { movie in
+              ForEach(viewModel.state.filteredMovies, id: \.id) { movie in
                 VStack(alignment: .leading) {
                   KFImage(URL(string: movie.posterPath))
                     .placeholder {
@@ -66,16 +66,16 @@ struct MoviesView: View {
         .padding(12)
       }
       .navigationTitle("Watch New Movies")
-      .redacted(reason: viewModel.isLoading ? .placeholder : [])
+      .redacted(reason: viewModel.state.isLoading ? .placeholder : [])
     }
     .onAppear {
       viewModel.showMovies()
       viewModel.showGenres()
     }
-    .onChange(of: viewModel.searchText) { _ in
+    .onChange(of: viewModel.state.searchText) { _ in
       viewModel.showSearchedMovies()
     }
-    .alert(isPresented: $viewModel.isOffline) {
+    .alert(isPresented: $viewModel.state.isOffline) {
       return Alert(
         title: Text("You are in offline mode"),
         dismissButton: .default(Text("OK"))

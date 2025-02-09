@@ -90,11 +90,11 @@ struct MovieDetailView: View {
     .background(Color(UIColor.systemBackground))
     .foregroundColor(.primary)
     .navigationBarTitle(viewModel.movieDetails.originalTitle, displayMode: .inline)
-    .redacted(reason: viewModel.isLoading ? .placeholder : [])
+    .redacted(reason: viewModel.state.isLoading ? .placeholder : [])
     .onAppear {
       viewModel.showMovieDetails()
     }
-    .alert(isPresented: $viewModel.isOffline) {
+    .alert(isPresented: $viewModel.state.isOffline) {
       return Alert(
         title: Text("You are in offline mode"),
         message: Text(""),
