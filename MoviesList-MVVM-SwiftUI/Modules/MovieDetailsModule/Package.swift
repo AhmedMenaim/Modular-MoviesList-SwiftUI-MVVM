@@ -37,7 +37,7 @@ let package = Package(
           name: "MovieDetailsModuleTests",
           dependencies: ["MovieDetailsModule"],
           resources: [
-            .copy("Resources/MockMovieDetailsNetworkResponse.json")
+            .copy("Resources")
           ]
         )
     ]
