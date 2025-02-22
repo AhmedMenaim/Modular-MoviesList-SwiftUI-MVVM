@@ -28,18 +28,36 @@ extension MoviesCoordinator: MoviesCoordinatorProtocol {
     navigationController.setViewControllers([hostingController], animated: false)
   }
 
+  func setRootViewController<T>(_ rootViewController: T) -> UINavigationController where T : UIViewController {
+    let navigationController = UINavigationController(rootViewController: rootViewController)
+    self.navigationController = navigationController
+    return navigationController
+  }
+
+  func push<T>(_ viewController: T, animated: Bool = true) where T : UIViewController {
+    navigationController.pushViewController(viewController, animated: animated)
+  }
+
+  func present<T>(_ viewController: T, animated: Bool) where T : UIViewController {
+    navigationController.present(viewController, animated: animated)
+  }
+
+  func goBack(animated: Bool = true) {
+    if let presentedVC = navigationController.presentedViewController {
+      presentedVC.dismiss(animated: animated)
+    } else {
+      navigationController.popViewController(animated: animated)
+    }
+  }
+
   func showMovieDetail(with movieID: String) {
     selectedMovieID = movieID
     let movieDetailView = MovieDetailsModuleFactory.makeModule(with: self)
     let hostingController = UIHostingController(rootView: movieDetailView)
-    navigationController.pushViewController(hostingController, animated: true)
+    push(hostingController)
   }
 
   func getSelectedMovieID() -> String? {
     selectedMovieID
-  }
-
-  func goBack() {
-    navigationController.popViewController(animated: true)
   }
 }

@@ -56,6 +56,6 @@ extension MovieDetailsViewModel {
   }
 
   func goBack() {
-    coordinator.goBack()
+    coordinator.goBack(animated: true)
   }
 }
