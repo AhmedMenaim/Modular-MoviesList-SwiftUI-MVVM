@@ -1,7 +1,7 @@
 import XCTest
-@testable import MoviesCaching
+@testable import DatabaseKit
 
-final class MoviesCachingTests: XCTestCase {
+final class DatabaseKitTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

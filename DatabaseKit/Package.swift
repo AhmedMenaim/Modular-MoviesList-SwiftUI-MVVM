@@ -4,15 +4,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "MoviesCaching",
+    name: "DatabaseKit",
     platforms: [
         .iOS(.v15)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "MoviesCaching",
-            targets: ["MoviesCaching"]),
+            name: "DatabaseKit",
+            targets: ["DatabaseKit"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,12 +23,12 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "MoviesCaching",
+            name: "DatabaseKit",
             dependencies: [
               .product(name: "RealmSwift", package: "realm-swift")
             ]),
         .testTarget(
-            name: "MoviesCachingTests",
-            dependencies: ["MoviesCaching"]),
+            name: "DatabaseKitTests",
+            dependencies: ["DatabaseKit"]),
     ]
 )
