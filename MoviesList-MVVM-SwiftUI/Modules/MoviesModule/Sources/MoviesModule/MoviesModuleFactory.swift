@@ -8,7 +8,7 @@
 import MANetwork
 import MoviesLookups
 import Commons
-import MoviesCaching
+import DatabaseKit
 
 public
 class MoviesModuleFactory {
@@ -17,7 +17,7 @@ class MoviesModuleFactory {
     let baseAPIClient = BaseAPIClient()
     let moviesClient = MoviesAPIClient(client: baseAPIClient)
     let genresClient = GenreAPIClient(client: baseAPIClient)
-    let cacheManager = MovieCacheManager()
+    let cacheManager = RealmDatabaseManager<MovieEntity>()
     let moviesRepository = MoviesRepository(
       client: moviesClient,
       cacheManager: cacheManager

@@ -9,18 +9,18 @@ import Foundation
 import Combine
 import MANetwork
 import Commons
-import MoviesCaching
+import DatabaseKit
 
 final
-class MoviesRepository {
+class MoviesRepository<Cache: DatabaseProtocol> where Cache.T == MovieEntity {
   // MARK: - Vars
   private var cancellable: Set<AnyCancellable> = []
   private var client: MoviesAPIClientProtocol
-  private var cacheManager: MovieCacheManagerProtocol
+  private let cacheManager: Cache
 
   init(
     client: MoviesAPIClientProtocol,
-    cacheManager: MovieCacheManagerProtocol
+    cacheManager: Cache
   ) {
     self.client = client
     self.cacheManager = cacheManager
@@ -93,7 +93,7 @@ extension MoviesRepository: MoviesRepositoryProtocol {
         .sink(receiveCompletion: { result in
           if case .failure(let error) = result {
             if RepositoryError(error: error) == RepositoryError.noInternetConnection {
-              let cachedMovies = self.cacheManager.getCachedMovies()
+              let cachedMovies = self.cacheManager.getAll()
               if !cachedMovies.isEmpty {
                 let repositoryModels = cachedMovies.map { self.convert($0) }
                 let repositoryModel = MoviesRepositoryModel(
@@ -112,7 +112,7 @@ extension MoviesRepository: MoviesRepositoryProtocol {
           let repositoryModel = self.convert(response)
           if let movies = repositoryModel.movies {
             let entities = movies.map { self.convert($0) }
-            self.cacheManager.cacheMovies(entities)
+            self.cacheManager.save(entities)
           }
           promise(.success(repositoryModel))
         })
