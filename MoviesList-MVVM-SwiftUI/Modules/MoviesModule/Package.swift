@@ -21,7 +21,7 @@ let package = Package(
         .package(path: "../../MANetwork"),
         .package(path: "../../MoviesLookups"),
         .package(path: "../../Commons"),
-        .package(path: "../../MoviesCaching")
+        .package(path: "../../DatabaseKit")
         ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -33,7 +33,7 @@ let package = Package(
               "MANetwork",
               "MoviesLookups",
               "Commons",
-              "MoviesCaching"
+              "DatabaseKit"
             ]),
 
         .testTarget(

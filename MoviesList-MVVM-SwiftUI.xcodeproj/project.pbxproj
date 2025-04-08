@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,12 +13,12 @@
 		A21B59BF2C61A3420032A053 /* Commons in Frameworks */ = {isa = PBXBuildFile; productRef = A21B59BE2C61A3420032A053 /* Commons */; };
 		A21B59C12C61A3470032A053 /* MANetwork in Frameworks */ = {isa = PBXBuildFile; productRef = A21B59C02C61A3470032A053 /* MANetwork */; };
 		A21B59C52C61A6160032A053 /* MovieDetailsModule in Frameworks */ = {isa = PBXBuildFile; productRef = A21B59C42C61A6160032A053 /* MovieDetailsModule */; };
-		A21B59D32C626CFF0032A053 /* MoviesCaching in Frameworks */ = {isa = PBXBuildFile; productRef = A21B59D22C626CFF0032A053 /* MoviesCaching */; };
 		A25CD78E2C62A22A00E3773A /* MoviesList_MVVM_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28E378F2C6016F1001521F4 /* MoviesList_MVVM_SwiftUIApp.swift */; };
 		A25CD78F2C62A22E00E3773A /* MoviesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28E37F92C6060ED001521F4 /* MoviesCoordinatorView.swift */; };
 		A28E37942C6016F2001521F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28E37932C6016F2001521F4 /* Assets.xcassets */; };
 		A28E37972C6016F2001521F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A28E37962C6016F2001521F4 /* Preview Assets.xcassets */; };
 		A28E37F82C605D9C001521F4 /* MoviesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28E37F72C605D9C001521F4 /* MoviesCoordinator.swift */; };
+		A2B46F442D6BEB8200C79FC4 /* DatabaseKit in Frameworks */ = {isa = PBXBuildFile; productRef = A2B46F432D6BEB8200C79FC4 /* DatabaseKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +27,13 @@
 		A21B59B52C61A14C0032A053 /* MoviesLookups */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MoviesLookups; sourceTree = "<group>"; };
 		A21B59B62C61A2220032A053 /* MoviesModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MoviesModule; sourceTree = "<group>"; };
 		A21B59C32C61A4F70032A053 /* MovieDetailsModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MovieDetailsModule; sourceTree = "<group>"; };
-		A21B59C62C6245130032A053 /* MoviesCaching */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MoviesCaching; sourceTree = "<group>"; };
 		A28E378C2C6016F1001521F4 /* MoviesList-MVVM-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoviesList-MVVM-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A28E378F2C6016F1001521F4 /* MoviesList_MVVM_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesList_MVVM_SwiftUIApp.swift; sourceTree = "<group>"; };
 		A28E37932C6016F2001521F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A28E37962C6016F2001521F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A28E37F72C605D9C001521F4 /* MoviesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCoordinator.swift; sourceTree = "<group>"; };
 		A28E37F92C6060ED001521F4 /* MoviesCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCoordinatorView.swift; sourceTree = "<group>"; };
+		A2B46F412D6BEACC00C79FC4 /* DatabaseKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DatabaseKit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,9 +44,9 @@
 				A21B59C52C61A6160032A053 /* MovieDetailsModule in Frameworks */,
 				A21B59B92C61A2890032A053 /* Kingfisher in Frameworks */,
 				A21B59C12C61A3470032A053 /* MANetwork in Frameworks */,
+				A2B46F442D6BEB8200C79FC4 /* DatabaseKit in Frameworks */,
 				A21B59BD2C61A2A50032A053 /* MoviesModule in Frameworks */,
 				A21B59BB2C61A2A10032A053 /* MoviesLookups in Frameworks */,
-				A21B59D32C626CFF0032A053 /* MoviesCaching in Frameworks */,
 				A21B59BF2C61A3420032A053 /* Commons in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,9 +57,9 @@
 		A28E37832C6016F1001521F4 = {
 			isa = PBXGroup;
 			children = (
-				A21B59C62C6245130032A053 /* MoviesCaching */,
-				A21B59B52C61A14C0032A053 /* MoviesLookups */,
+				A2B46F412D6BEACC00C79FC4 /* DatabaseKit */,
 				A21B59B42C61A0360032A053 /* MANetwork */,
+				A21B59B52C61A14C0032A053 /* MoviesLookups */,
 				A21B59B32C619ED30032A053 /* Commons */,
 				A28E378E2C6016F1001521F4 /* MoviesList-MVVM-SwiftUI */,
 				A28E378D2C6016F1001521F4 /* Products */,
@@ -143,7 +143,7 @@
 				A21B59BE2C61A3420032A053 /* Commons */,
 				A21B59C02C61A3470032A053 /* MANetwork */,
 				A21B59C42C61A6160032A053 /* MovieDetailsModule */,
-				A21B59D22C626CFF0032A053 /* MoviesCaching */,
+				A2B46F432D6BEB8200C79FC4 /* DatabaseKit */,
 			);
 			productName = "MoviesList-MVVM-SwiftUI";
 			productReference = A28E378C2C6016F1001521F4 /* MoviesList-MVVM-SwiftUI.app */;
@@ -175,6 +175,7 @@
 			mainGroup = A28E37832C6016F1001521F4;
 			packageReferences = (
 				A21B59B72C61A2890032A053 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				A2B46F422D6BEB8200C79FC4 /* XCLocalSwiftPackageReference "DatabaseKit" */,
 			);
 			productRefGroup = A28E378D2C6016F1001521F4 /* Products */;
 			projectDirPath = "";
@@ -411,6 +412,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		A2B46F422D6BEB8200C79FC4 /* XCLocalSwiftPackageReference "DatabaseKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = DatabaseKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		A21B59B72C61A2890032A053 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -448,9 +456,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = MovieDetailsModule;
 		};
-		A21B59D22C626CFF0032A053 /* MoviesCaching */ = {
+		A2B46F432D6BEB8200C79FC4 /* DatabaseKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = MoviesCaching;
+			productName = DatabaseKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
