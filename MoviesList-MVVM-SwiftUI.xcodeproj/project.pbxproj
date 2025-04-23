@@ -57,7 +57,6 @@
 			children = (
 				A28E378E2C6016F1001521F4 /* MoviesList-MVVM-SwiftUI */,
 				A28E378D2C6016F1001521F4 /* Products */,
-				A28E38222C6176F3001521F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,13 +102,6 @@
 				A28E37F92C6060ED001521F4 /* MoviesCoordinatorView.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		A28E38222C6176F3001521F4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
